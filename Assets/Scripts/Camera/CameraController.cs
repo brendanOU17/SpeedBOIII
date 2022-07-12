@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     private Transform player;
     private float yOffset = 3.45f;
-    private float zOffset = -8f;
+    private float zOffset = -10f;
     void Start()
     {
         player = GameObject.Find("Player").transform;

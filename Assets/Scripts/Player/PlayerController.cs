@@ -3,20 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{
-    public float movementSpeed;
+{ 
+    public SpawnManager spawnManager;
+    private CharacterController Controller;
+    private Vector3 direction;
+    public float zMoveSpeed;
+    private int lanes = 1;
+    public float laneDistance = 2;
 
     void Start()
     {
-        
+    Controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float xMovement = Input.GetAxis("Horizontal") * movementSpeed;
-        float yMovement = Input.GetAxis("Vertical") * movementSpeed / 2;
+        direction.z = zMoveSpeed;
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            lanes++;
+            if(lanes == 3)
+                lanes = 2;
+        }
 
-        transform.Translate(new Vector3(xMovement, 0, yMovement) * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            lanes--;
+            if (lanes == -1)
+                lanes = 0;
+        }
+
+        Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
+
+        if (lanes == 0)
+        {
+            targetPosition += Vector3.left * laneDistance;
+        }else if (lanes == 2)
+        {
+            targetPosition += Vector3.right * laneDistance;
+        }
+
+        transform.position = targetPosition;
+    }
+
+    private void FixedUpdate()
+    {
+        Controller.Move(direction*Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        spawnManager.SpawnTriggerEntered();
     }
 }
