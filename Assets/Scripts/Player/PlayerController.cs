@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     public float zMoveSpeed;
     private int lanes = 1;
     public float laneDistance = 2;
-
+    public float jumpForce;
+    public float gravity = -20;
     void Start()
     {
     Controller = GetComponent<CharacterController>();
@@ -20,6 +21,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         direction.z = zMoveSpeed;
+
+        direction.y += gravity* Time.deltaTime;
+        if (Controller.isGrounded)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.D))
         {
             lanes++;
@@ -44,12 +55,17 @@ public class PlayerController : MonoBehaviour
             targetPosition += Vector3.right * laneDistance;
         }
 
-        transform.position = targetPosition;
+        transform.position = targetPosition; //Vector3.Lerp(transform.position,targetPosition,40* Time.deltaTime); 
     }
 
     private void FixedUpdate()
     {
         Controller.Move(direction*Time.deltaTime);
+    }
+
+    private void Jump()
+    {
+        direction.y = jumpForce;
     }
 
     private void OnTriggerEnter(Collider other)

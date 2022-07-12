@@ -8,12 +8,12 @@ public class Obstacle4 : MonoBehaviour
 
      void Update()
     {
-        if(transform.position.x < -3)
+        if(transform.position.x < -2)
         {
             moveSpeed = 4;
         }
 
-        if (transform.position.x > 3)
+        if (transform.position.x > 2)
         {
             moveSpeed = -4;
         }
