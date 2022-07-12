@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 direction;
     public float zMoveSpeed;
     private int lanes = 1;
-    public float laneDistance = 2;
+    public float laneDistance;
     public float jumpForce;
     public float gravity = -20;
     void Start()
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
             targetPosition += Vector3.right * laneDistance;
         }
 
-        transform.position = targetPosition; //Vector3.Lerp(transform.position,targetPosition,40* Time.deltaTime); 
+        transform.position = targetPosition; //Vector3.Lerp(transform.position,targetPosition, 20 * Time.deltaTime); 
     }
 
     private void FixedUpdate()
