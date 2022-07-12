@@ -296,9 +296,9 @@ MonoBehaviour:
   roadPrefabs:
   - {fileID: 4233263116300790831, guid: e6de16f9b982cbf4cb1c031f1e2d8ffb, type: 3}
   - {fileID: 6412135434467429834, guid: 9552bb9a4c360ce42893907b617e364a, type: 3}
-  - {fileID: 1111562922767219498, guid: 756891a48e3f11840ad5dac44ae19588, type: 3}
-  - {fileID: 4454782055006607219, guid: d142c99b90f67ac4e831ca0fbfeaad98, type: 3}
-  - {fileID: 1155416076375619610, guid: 8c87be46b0f099a4b82760ee41c4861b, type: 3}
+  - {fileID: 8242231284664165999, guid: 756891a48e3f11840ad5dac44ae19588, type: 3}
+  - {fileID: 602972026635056079, guid: d142c99b90f67ac4e831ca0fbfeaad98, type: 3}
+  - {fileID: 4263693912185082472, guid: 8c87be46b0f099a4b82760ee41c4861b, type: 3}
   zSpawn: 34
   offset: 34
   player: {fileID: 1174885915}
@@ -463,9 +463,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnManager: {fileID: 710048678}
   zMoveSpeed: 20
-  laneDistance: 2
+  laneDistance: 2.5
   jumpForce: 10
-  gravity: -20
+  gravity: -30
 --- !u!143 &1174885911
 CharacterController:
   m_ObjectHideFlags: 0
