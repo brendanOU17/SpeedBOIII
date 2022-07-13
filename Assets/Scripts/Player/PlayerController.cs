@@ -25,20 +25,20 @@ public class PlayerController : MonoBehaviour
         direction.y += gravity* Time.deltaTime;
         if (Controller.isGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (/*Input.GetKeyDown(KeyCode.Space)||*/ SwipeManager.swipeUp)
             {
                 Jump();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (/*Input.GetKeyDown(KeyCode.D)||*/ SwipeManager.swipeRight)
         {
             lanes++;
             if(lanes == 3)
                 lanes = 2;
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (/*Input.GetKeyDown(KeyCode.A)||*/ SwipeManager.swipeLeft)
         {
             lanes--;
             if (lanes == -1)
@@ -55,7 +55,16 @@ public class PlayerController : MonoBehaviour
             targetPosition += Vector3.right * laneDistance;
         }
 
-        transform.position = targetPosition; //Vector3.Lerp(transform.position,targetPosition, 20 * Time.deltaTime); 
+        //transform.position = Vector3.Lerp(transform.position,targetPosition, 70 * Time.deltaTime); 
+
+        if (transform.position == targetPosition)
+            return;
+        Vector3 diff = targetPosition - transform.position;
+        Vector3 moveDir = diff.normalized * 25 * Time.deltaTime;
+        if (moveDir.sqrMagnitude < diff.sqrMagnitude)
+            Controller.Move(moveDir);
+        else
+            Controller.Move(diff);
     }
 
     private void FixedUpdate()
@@ -68,6 +77,13 @@ public class PlayerController : MonoBehaviour
         direction.y = jumpForce;
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.tag == ("Obstacle"))
+        {
+            PlayerManager.gameOver = true;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         spawnManager.SpawnTriggerEntered();

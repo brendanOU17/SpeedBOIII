@@ -7,12 +7,7 @@ public class SwipeManager : MonoBehaviour
    public static bool tap, swipeLeft, swipeRight,swipeUp ,swipeDown;
     private bool isDrag = false;
     private Vector2 startTouch, swipeDelta;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     private void Update()
     {
         tap = swipeUp = swipeLeft = swipeRight = swipeDown = false;
@@ -29,6 +24,17 @@ public class SwipeManager : MonoBehaviour
             Reset();
         }
         #endregion
+        if (Input.GetMouseButtonDown(0))
+        {
+            tap = true;
+            isDrag = true;
+            startTouch = Input.mousePosition;
+        }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            isDrag = false;
+            Reset();
+        }
 
         #region Mobile Input
         if (Input.touches.Length > 0)
@@ -47,11 +53,26 @@ public class SwipeManager : MonoBehaviour
         }
         #endregion
 
+        if(Input.touches.Length > 0)
+        {
+            if(Input.touches[0].phase == TouchPhase.Began)
+            {
+                tap = true;
+                isDrag = true;
+                startTouch = Input.touches[0].position;
+            }
+            else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
+            {
+                isDrag = false;
+                Reset();
+            }
+        }
+
         //calculate the distance 
         swipeDelta = Vector2.zero;
         if (isDrag)
         {
-            if (Input.touches.Length == 0)
+            if (Input.touches.Length < 0)
                 swipeDelta = Input.touches[0].position - startTouch;
             else if (Input.GetMouseButton(0))
                 swipeDelta = (Vector2)Input.mousePosition - startTouch; 
@@ -91,11 +112,5 @@ public class SwipeManager : MonoBehaviour
         isDrag = false;
     }
 
-    public bool Tap { get { return tap; } }
-    public Vector2 SwipeDelta { get { return swipeDelta; } }
-    public bool SwipeLeft { get { return swipeLeft; } }
-    public bool SwipeRight { get { return swipeRight; } }
-    public bool SwipeUp { get { return swipeUp; } }
-    public bool SwipeDown { get { return swipeDown; } }
 
 }
