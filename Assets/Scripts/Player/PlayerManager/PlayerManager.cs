@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static bool gameOver;
     public GameObject gameoverPanel;
+    public GameObject pauseButton;
     void Start()
     {
         gameOver = false;
@@ -18,6 +19,7 @@ public class PlayerManager : MonoBehaviour
         if (gameOver)
         {
             Time.timeScale = 0;
+            pauseButton.SetActive(false);
             gameoverPanel.SetActive(true);
         }
     }

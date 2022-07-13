@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    public GameObject pauseMenuPanel;
+    public GameObject pauseButton;
     public void Replay()
     {
         SceneManager.LoadScene("Gameplay"); 
@@ -18,5 +20,19 @@ public class ButtonManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        pauseMenuPanel.SetActive(false);
+        pauseButton.SetActive(true);
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        pauseMenuPanel.SetActive(true);
+        pauseButton.SetActive(false);
     }
 }
