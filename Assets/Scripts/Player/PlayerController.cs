@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 { 
@@ -12,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public float laneDistance;
     public float jumpForce;
     public float gravity = -20;
+    public Text distanceText;
+    public Text highsocreText;
+    public float highscore;
+    public float score;
     void Start()
     {
     Controller = GetComponent<CharacterController>();
@@ -65,11 +71,20 @@ public class PlayerController : MonoBehaviour
             Controller.Move(moveDir);
         else
             Controller.Move(diff);
+
+        
     }
 
     private void FixedUpdate()
     {
         Controller.Move(direction*Time.deltaTime);
+        score = (int)Math.Round(transform.position.z);
+        distanceText.text = score + "m";
+        if(score > highscore)
+        {
+            highsocreText.text = score + "m";
+
+        }
     }
 
     private void Jump()
