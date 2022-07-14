@@ -80,11 +80,7 @@ public class PlayerController : MonoBehaviour
         Controller.Move(direction*Time.deltaTime);
         score = (int)Math.Round(transform.position.z);
         distanceText.text = score + "m";
-        if(score > highscore)
-        {
-            highsocreText.text = score + "m";
-
-        }
+      
     }
 
     private void Jump()
