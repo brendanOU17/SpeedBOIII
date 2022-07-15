@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VBucks : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private SoundData playerSFX;
     void Start()
     {
         
@@ -22,6 +22,7 @@ public class VBucks : MonoBehaviour
         {
             PlayerManager.numberOfVbucks += 1;
             PlayerPrefs.SetInt("numberOfVbucks", PlayerPrefs.GetInt("numberOfVbucks", 0) + 1);
+            SoundManager.instance.PlaySFX(playerSFX, "PickUp");
             Destroy(gameObject);
             Debug.Log("COInnnnn");
         }

@@ -26,6 +26,6 @@ public class PlayerManager : MonoBehaviour
             pauseButton.SetActive(false);
             gameoverPanel.SetActive(true);
         }
-       
+        //vBucksText.text = "Vbucks" + numberOfVbucks;
     }
 }

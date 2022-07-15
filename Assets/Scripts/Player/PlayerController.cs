@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public Text scoreText;
     public float highscore;
     public static int score;
+    [SerializeField] private SoundData playerSFX;
     void Start()
     {
     Controller = GetComponent<CharacterController>();
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour
         if (hit.transform.tag == ("Obstacle"))
         {
             PlayerManager.gameOver = true;
+            SoundManager.instance.PlaySFX(playerSFX, "PlayerDie");
         }
     }
     private void OnTriggerEnter(Collider other)

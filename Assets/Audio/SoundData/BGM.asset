@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ba500497c0285145a35eaf52ce41f7f, type: 3}
-  m_Name: Player
+  m_Name: BGM
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24300002, guid: 4ede581580733d246bd9cc7e7711b525, type: 2}
+  mixer: {fileID: 0}
   SoundList:
-  - clip: {fileID: 8300000, guid: 500f0bb232c3a8542bfa795c8d53a440, type: 3}
-    name: PickUp
-    volume: 0.5
-  - clip: {fileID: 8300000, guid: e88ffa22329284049ac10624fbd3c50c, type: 3}
-    name: PlayerDie
+  - clip: {fileID: 8300000, guid: 14876d0588bc8a9459cd1887089fc08d, type: 3}
+    name: BGM
     volume: 0.5
