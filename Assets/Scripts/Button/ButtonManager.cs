@@ -35,4 +35,9 @@ public class ButtonManager : MonoBehaviour
         pauseMenuPanel.SetActive(true);
         pauseButton.SetActive(false);
     }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Gameplay");
+    }
 }
