@@ -2,11 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ButtonManager : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
     public GameObject pauseButton;
+    public TextMeshProUGUI vBucksText;
+    public TextMeshProUGUI highscoreText;
+
+    private void Update()
+    {
+        highscoreText.text = "High Score\n" + PlayerPrefs.GetInt("HighScore", 0);
+        vBucksText.text = PlayerPrefs.GetInt("numberOfVbucks", 0).ToString();
+    }
     public void Replay()
     {
         SceneManager.LoadScene("Gameplay"); 

@@ -21,6 +21,7 @@ public class VBucks : MonoBehaviour
         if(other.tag == "Player")
         {
             PlayerManager.numberOfVbucks += 1;
+            PlayerPrefs.SetInt("numberOfVbucks", PlayerPrefs.GetInt("numberOfVbucks", 0) + 1);
             Destroy(gameObject);
             Debug.Log("COInnnnn");
         }

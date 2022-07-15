@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject gameoverPanel;
     public GameObject pauseButton;
     public static int numberOfVbucks;
-    public Text vBucksText;
+    
     void Start()
     {
         gameOver = false;
@@ -26,6 +26,6 @@ public class PlayerManager : MonoBehaviour
             pauseButton.SetActive(false);
             gameoverPanel.SetActive(true);
         }
-        vBucksText.text = "Vbucks" + numberOfVbucks;
+       
     }
 }

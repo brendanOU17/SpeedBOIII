@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 { 
@@ -14,10 +15,9 @@ public class PlayerController : MonoBehaviour
     public float laneDistance;
     public float jumpForce;
     public float gravity = -20;
-    public Text distanceText;
-    public Text highsocreText;
+    public Text scoreText;
     public float highscore;
-    public float score;
+    public static int score;
     void Start()
     {
     Controller = GetComponent<CharacterController>();
@@ -78,9 +78,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Controller.Move(direction*Time.deltaTime);
-        score = (int)Math.Round(transform.position.z);
-        distanceText.text = score + "m";
-      
+        score = (int)transform.position.z;
+        scoreText.text = score.ToString();
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
     }
 
     private void Jump()
