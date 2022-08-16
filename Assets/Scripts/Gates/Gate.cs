@@ -7,20 +7,18 @@ using Random = UnityEngine.Random;
 
 public class Gate : MonoBehaviour
 {
-    private GameObject arrowStack;
+    private GameObject player;
 
     [SerializeField] private Material blueMaterial;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Material redMaterial;
     [SerializeField] private TMP_Text _gateText;
+    public TextMeshProUGUI ArrowsText;
     [SerializeField] private bool start;
     private MeshRenderer _meshRenderer;
     private int gateNumber;
-
-
     public string gateOperator;
-
-    // Start is called before the first frame update
+    int newArrowCount;
     void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
@@ -34,15 +32,11 @@ public class Gate : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            arrowStack = other.gameObject;
+            player = other.gameObject;
             GateOperation();
-            Destroy(this.gameObject); //TODO CHECK BACK
+            Destroy(this.gameObject); 
         }
     }
-
-    /// <summary>
-    /// Assigns an operator and color to the gate
-    /// </summary>
     private void AssignOperator()
     {
         if (start)
@@ -71,10 +65,6 @@ public class Gate : MonoBehaviour
                 break;
         }
     }
-
-    /// <summary>
-    /// Assigns a number to the gate
-    /// </summary>
     private void AssignNumber()
     {
         if (gateOperator == "*" || gateOperator == "/")
@@ -83,13 +73,10 @@ public class Gate : MonoBehaviour
         }
         else
         {
-            gateNumber = Random.Range(1, 51);
+            gateNumber = Random.Range(1, 10);
         }
     }
 
-    /// <summary>
-    /// Assigns text to gate
-    /// </summary>
     private void AssignText()
     {
         _gateText.text = gateOperator + gateNumber;
@@ -100,8 +87,8 @@ public class Gate : MonoBehaviour
     /// </summary>
     private void GateOperation()
     {
-        int arrowCount = arrowStack.transform.childCount;
-        int newArrowCount;
+        int arrowCount = player.transform.childCount;
+        
         int arrowToInstantiate;
         int arrowToDestroy;
         Debug.Log("There are ," + arrowCount + " child objects in arrow stack");
@@ -111,7 +98,7 @@ public class Gate : MonoBehaviour
             arrowToInstantiate = newArrowCount - arrowCount;
             for (int i = 0; i < arrowToInstantiate; i++)
             {
-                Instantiate(arrowPrefab, arrowStack.transform);
+                Instantiate(arrowPrefab, player.transform);
             }
 
             Debug.Log("New arrow count is :" + newArrowCount);
@@ -122,7 +109,7 @@ public class Gate : MonoBehaviour
             arrowToDestroy = arrowCount - newArrowCount;
             for (int i = 0; i < arrowToDestroy; i++)
             {
-                Destroy(arrowStack.transform.GetChild(i).gameObject);
+                Destroy(player.transform.GetChild(i).gameObject);
             }
 
             Debug.Log("New arrow count is :" + newArrowCount);
@@ -133,7 +120,7 @@ public class Gate : MonoBehaviour
             arrowToInstantiate = newArrowCount - arrowCount;
             for (int i = 0; i < arrowToInstantiate; i++)
             {
-                Instantiate(arrowPrefab, arrowStack.transform);
+                Instantiate(arrowPrefab, player.transform);
             }
 
             Debug.Log("New arrow count is :" + newArrowCount);
@@ -144,10 +131,12 @@ public class Gate : MonoBehaviour
             arrowToDestroy = arrowCount - newArrowCount;
             for (int i = 0; i < arrowToDestroy; i++)
             {
-                Destroy(arrowStack.transform.GetChild(i).gameObject);
+                Destroy(player.transform.GetChild(i).gameObject);
             }
 
             Debug.Log("New arrow count is :" + newArrowCount);
         }
+
+        ArrowsText.text = newArrowCount.ToString(); 
     }
 }

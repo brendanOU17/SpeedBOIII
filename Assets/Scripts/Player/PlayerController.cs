@@ -28,24 +28,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         direction.z = zMoveSpeed;
-
-        direction.y += gravity* Time.deltaTime;
-        if (Controller.isGrounded)
-        {
-            if (/*Input.GetKeyDown(KeyCode.Space)||*/ SwipeManager.swipeUp)
-            {
-                Jump();
-            }
-        }
-
-        if (/*Input.GetKeyDown(KeyCode.D)||*/ SwipeManager.swipeRight)
+        if (Input.GetKeyDown(KeyCode.D)|| SwipeManager.swipeRight)
         {
             lanes++;
             if(lanes == 3)
                 lanes = 2;
         }
 
-        if (/*Input.GetKeyDown(KeyCode.A)||*/ SwipeManager.swipeLeft)
+        if (Input.GetKeyDown(KeyCode.A)|| SwipeManager.swipeLeft)
         {
             lanes--;
             if (lanes == -1)
