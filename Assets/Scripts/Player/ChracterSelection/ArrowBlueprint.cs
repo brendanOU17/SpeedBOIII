@@ -1,5 +1,5 @@
 [System.Serializable]
-public class BallBlueprint 
+public class ArrowBlueprint 
 {
     public string name;
     public int index;

@@ -18,10 +18,12 @@ public class PlayerController : MonoBehaviour
     public Text scoreText;
     public float highscore;
     public static int score;
+    ArrowOrganizer arrowCountSave;
     [SerializeField] private SoundData playerSFX;
     void Start()
     {
     Controller = GetComponent<CharacterController>();
+    arrowCountSave = GetComponent<ArrowOrganizer>();
     }
 
     // Update is called once per frame
@@ -69,12 +71,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Controller.Move(direction*Time.deltaTime);
-        score = (int)transform.position.z;
-        scoreText.text = score.ToString();
-        if (score > PlayerPrefs.GetInt("HighScore", 0))
-        {
-            PlayerPrefs.SetInt("HighScore", score);
-        }
+       
     }
 
     private void Jump()
@@ -87,6 +84,7 @@ public class PlayerController : MonoBehaviour
         if (hit.transform.tag == ("Obstacle"))
         {
             PlayerManager.gameOver = true;
+            PlayerPrefs.SetInt("ArrowsCollected", PlayerPrefs.GetInt("ArrowsCollected", 0) + arrowCountSave.arrowCount);
             SoundManager.instance.PlaySFX(playerSFX, "PlayerDie");
         }
     }

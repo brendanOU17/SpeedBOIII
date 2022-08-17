@@ -9,11 +9,11 @@ public class ShopManager : MonoBehaviour
     public GameObject[] ballModels;
     public int currentBallIndex;
 
-    public BallBlueprint[] balls;
+    public ArrowBlueprint[] balls;
     public Button buyButton;
     void Start()
     {
-        foreach(BallBlueprint ball in balls)
+        foreach(ArrowBlueprint ball in balls)
         {
             if (ball.price == 0)
                 ball.isUnlocked = true;
@@ -42,7 +42,7 @@ public class ShopManager : MonoBehaviour
         if(currentBallIndex == ballModels.Length)
             currentBallIndex=0;
         ballModels[currentBallIndex].SetActive(true);
-        BallBlueprint unlockBall = balls[currentBallIndex];
+        ArrowBlueprint unlockBall = balls[currentBallIndex];
         if (!unlockBall.isUnlocked)
             return;
         PlayerPrefs.SetInt("SelectedBall", currentBallIndex);
@@ -55,7 +55,7 @@ public class ShopManager : MonoBehaviour
         if (currentBallIndex == -1)
             currentBallIndex = ballModels.Length -1;
         ballModels[currentBallIndex].SetActive(true);
-        BallBlueprint unlockBall = balls[currentBallIndex];
+        ArrowBlueprint unlockBall = balls[currentBallIndex];
         if (!unlockBall.isUnlocked)
             return;
         PlayerPrefs.SetInt("SelectedBall", currentBallIndex);
@@ -63,7 +63,7 @@ public class ShopManager : MonoBehaviour
 
     public void UnlockBall()
     {
-        BallBlueprint unlockBall = balls[currentBallIndex];
+        ArrowBlueprint unlockBall = balls[currentBallIndex];
 
         PlayerPrefs.SetInt(unlockBall.name, 1);
         PlayerPrefs.SetInt("SelectedBall", currentBallIndex);
@@ -72,7 +72,7 @@ public class ShopManager : MonoBehaviour
     }
     private void UpdateUI()
     {
-        BallBlueprint updateBall = balls[currentBallIndex];
+        ArrowBlueprint updateBall = balls[currentBallIndex];
         if (updateBall.isUnlocked)
         {
             buyButton.gameObject.SetActive(false);
@@ -81,7 +81,7 @@ public class ShopManager : MonoBehaviour
         {
             buyButton.gameObject.SetActive(true);
             buyButton.GetComponentInChildren<TextMeshProUGUI>().text ="Buy- "+ updateBall.price;
-            if (updateBall.price < PlayerPrefs.GetInt("numberOfVbucks", 0))
+            if (updateBall.price < PlayerPrefs.GetInt("ArrowsCollected", 0))
             {
                 buyButton.interactable = true;
             }

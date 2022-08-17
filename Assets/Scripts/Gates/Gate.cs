@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Gate : MonoBehaviour
@@ -13,19 +14,19 @@ public class Gate : MonoBehaviour
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Material redMaterial;
     [SerializeField] private TMP_Text _gateText;
-    public TextMeshProUGUI ArrowsText;
     [SerializeField] private bool start;
     private MeshRenderer _meshRenderer;
     private int gateNumber;
     public string gateOperator;
-    int newArrowCount;
+    public int newArrowCount;
+    public int arrowDisplay;
+    public Text ArrowsText;
     void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         AssignOperator();
         AssignNumber();
         AssignText();
-        //Debug.Log(gameObject + "Number : " + gateNumber + " Operator : " + gateOperator);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,9 +83,7 @@ public class Gate : MonoBehaviour
         _gateText.text = gateOperator + gateNumber;
     }
 
-    /// <summary>
-    /// Calculates the new arrow size
-    /// </summary>
+   
     private void GateOperation()
     {
         int arrowCount = player.transform.childCount;
@@ -101,7 +100,11 @@ public class Gate : MonoBehaviour
                 Instantiate(arrowPrefab, player.transform);
             }
 
+            arrowDisplay = newArrowCount;
+            ArrowsText.text = arrowDisplay.ToString();
             Debug.Log("New arrow count is :" + newArrowCount);
+           // PlayerPrefs.SetInt("ArrowsCollected", PlayerPrefs.GetInt("ArrowsCollected", 0) + newArrowCount);
+            Debug.Log("ArrowsColledted" + PlayerPrefs.GetInt("ArrowsCollected"));
         }
         else if (gateOperator == "/")
         {
@@ -112,7 +115,11 @@ public class Gate : MonoBehaviour
                 Destroy(player.transform.GetChild(i).gameObject);
             }
 
+            arrowDisplay = newArrowCount;
+           // ArrowsText.text = arrowDisplay.ToString();
             Debug.Log("New arrow count is :" + newArrowCount);
+           // PlayerPrefs.SetInt("ArrowsCollected", PlayerPrefs.GetInt("ArrowsCollected", 0) + newArrowCount);
+            Debug.Log("ArrowsColledted" + PlayerPrefs.GetInt("ArrowsCollected"));
         }
         else if (gateOperator == "+")
         {
@@ -123,7 +130,12 @@ public class Gate : MonoBehaviour
                 Instantiate(arrowPrefab, player.transform);
             }
 
+            arrowDisplay = newArrowCount;
+            //ArrowsText.text = arrowDisplay.ToString();
             Debug.Log("New arrow count is :" + newArrowCount);
+
+            //PlayerPrefs.SetInt("ArrowsCollected", PlayerPrefs.GetInt("ArrowsCollected", 0) + newArrowCount);
+            Debug.Log("ArrowsColledted" + PlayerPrefs.GetInt("ArrowsCollected"));
         }
         else if (gateOperator == "-")
         {
@@ -134,9 +146,22 @@ public class Gate : MonoBehaviour
                 Destroy(player.transform.GetChild(i).gameObject);
             }
 
+            arrowDisplay = newArrowCount;
+           // ArrowsText.text = arrowDisplay.ToString();
             Debug.Log("New arrow count is :" + newArrowCount);
+           // PlayerPrefs.SetInt("ArrowsCollected", PlayerPrefs.GetInt("ArrowsCollected", 0)  + newArrowCount);
+            Debug.Log("ArrowsColledted"+ PlayerPrefs.GetInt("ArrowsCollected"));
         }
 
-        ArrowsText.text = newArrowCount.ToString(); 
+     
+    }
+    private void Update()
+    {
+        
+       /* if (newArrowCount > PlayerPrefs.GetInt("ArrowsCollected", 0))
+        {
+            PlayerPrefs.SetInt("ArrowsCollected", 0 + newArrowCount);
+        }  
+        PlayerPrefs.SetInt("ArrowShop",arrowToSave);*/
     }
 }

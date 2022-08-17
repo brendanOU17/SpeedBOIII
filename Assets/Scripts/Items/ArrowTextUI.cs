@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class VBucks : MonoBehaviour
+public class ArrowTextUI : MonoBehaviour
 {
-    [SerializeField] private SoundData playerSFX;
+    public Text ArrowsText;
+    public Gate getArrowvalue;
     void Start()
     {
         
@@ -13,10 +15,12 @@ public class VBucks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(40 * Time.deltaTime, 20 * Time.deltaTime, 20 * Time.deltaTime); 
+       // transform.Rotate(40 * Time.deltaTime, 20 * Time.deltaTime, 20 * Time.deltaTime);
+        ArrowsText.text = getArrowvalue.arrowDisplay.ToString();
+        Debug.Log(getArrowvalue.arrowDisplay.ToString());
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
@@ -26,5 +30,5 @@ public class VBucks : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("COInnnnn");
         }
-    }
+    }*/
 }

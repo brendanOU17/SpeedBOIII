@@ -8,15 +8,14 @@ public class ButtonManager : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
     public GameObject pauseButton;
-    public TextMeshProUGUI vBucksText;
     public TextMeshProUGUI highscoreText;
     [SerializeField] private SoundData buttonSFX;
 
 
     private void Update()
     {
-        highscoreText.text = "High Score\n" + PlayerPrefs.GetInt("HighScore", 0);
-        vBucksText.text = PlayerPrefs.GetInt("numberOfVbucks", 0).ToString();
+        highscoreText.text = "Total Arrows Earned: \n" + PlayerPrefs.GetInt("ArrowsCollected", 0);
+        //vBucksText.text = PlayerPrefs.GetInt("ArrowShop", 0).ToString();
     }
     public void Replay()
     {
