@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 283351314}
   - component: {fileID: 283351315}
   m_Layer: 0
-  m_Name: BallHolder
+  m_Name: ArrowHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
