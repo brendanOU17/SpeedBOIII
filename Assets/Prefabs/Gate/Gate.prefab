@@ -185,7 +185,6 @@ GameObject:
   - component: {fileID: 5292390013478074670}
   - component: {fileID: 7762139863977389631}
   - component: {fileID: 3261586158443438675}
-  - component: {fileID: 7777241412484088711}
   - component: {fileID: 204803440153385631}
   m_Layer: 0
   m_Name: Gate
@@ -296,21 +295,6 @@ MonoBehaviour:
   arrowDisplay: 0
   ArrowsText: {fileID: 5479030671533222673, guid: ad7172fda1d48db4d80acc3d044ae10f,
     type: 3}
---- !u!114 &7777241412484088711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465185467149500149}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0e28ea27419e247a9c45007d9f182b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ArrowsText: {fileID: 5479030671533222673, guid: ad7172fda1d48db4d80acc3d044ae10f,
-    type: 3}
-  getArrowvalue: {fileID: 3261586158443438675}
 --- !u!54 &204803440153385631
 Rigidbody:
   m_ObjectHideFlags: 0

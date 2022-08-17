@@ -18,6 +18,11 @@ public class ArrowOrganizer : MonoBehaviour
     private void ArrowPositionUpdater()
     {
         arrowCount = transform.childCount;
+
+        if(arrowCount == 0)
+        {
+            PlayerManager.gameOver = true;
+        }
         float angleSelection = Mathf.PI * 2f / arrowCount;
         ArrowsText.text = arrowCount.ToString();
         for (int i = 0; i < arrowCount; i++)
@@ -35,5 +40,7 @@ public class ArrowOrganizer : MonoBehaviour
 
             child.position = arrowPosition;
         }
+
+
     }
 }

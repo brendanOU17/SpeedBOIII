@@ -68,7 +68,7 @@ public class ShopManager : MonoBehaviour
         PlayerPrefs.SetInt(unlockBall.name, 1);
         PlayerPrefs.SetInt("SelectedBall", currentBallIndex);
         unlockBall.isUnlocked = true;
-        PlayerPrefs.SetInt("numberOfVbucks", PlayerPrefs.GetInt("numberOfVbucks",0)- unlockBall.price);
+        PlayerPrefs.SetInt("ArrowsCollected", PlayerPrefs.GetInt("ArrowsCollected", 0)- unlockBall.price);
     }
     private void UpdateUI()
     {

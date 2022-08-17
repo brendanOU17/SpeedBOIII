@@ -14,7 +14,7 @@ public class ButtonManager : MonoBehaviour
 
     private void Update()
     {
-        highscoreText.text = "Total Arrows Earned: \n" + PlayerPrefs.GetInt("ArrowsCollected", 0);
+        highscoreText.text = ":" + PlayerPrefs.GetInt("ArrowsCollected", 0);
         //vBucksText.text = PlayerPrefs.GetInt("ArrowShop", 0).ToString();
     }
     public void Replay()
